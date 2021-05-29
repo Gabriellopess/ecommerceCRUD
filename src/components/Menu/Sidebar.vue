@@ -5,11 +5,9 @@
                 <Burger id="sdbt"></Burger>
                 <div id="sdmenu">
                     <ul id="sdnavbar">
-                        <a href="#home" v-smooth-scroll><li><b @click="toggle">Hub</b></li></a>
-                        <a href="#quemsomos" v-smooth-scroll><li><b @click="toggle">Meus Produtos</b></li></a>
-                        <a href="#servicos" v-smooth-scroll><li><b @click="toggle">Minhas Informações</b></li></a>
+                        <a href="#/hub" v-smooth-scroll><li><b @click="toggle">Hub</b></li></a>
+                        <a href="#/meusprodutos" v-smooth-scroll><li><b @click="toggle">Meus Produtos</b></li></a>
                     </ul>
-                    <!-- <a href="#login"><button id="sdcompra"><b>LOGIN</b></button></a> -->
                 </div>
             </div>
         </transition>

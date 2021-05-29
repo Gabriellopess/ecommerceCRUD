@@ -1,5 +1,6 @@
 <template>
-  <div id="body">  
+  <div id="body">
+    <div id="title">Cadastre-se para mais informações:</div>
     <b-form id="form">
 
       <div class="form-group">
@@ -25,11 +26,12 @@
 
 
       <div class="button">
-          <input type="submit" value="Login" class="button-success">
+          <b-button variant="success" type="submit" @click="create">Cadastrar</b-button>
       </div>
       <div>
-        <b-button variant="success" type="submit" @click="create">Cadastro</b-button>
-        <!-- <b-button variant="danger" type="submit" @click="logout">Logout</b-button> -->
+          <router-link to="Login">
+            <b-button id="button" type="reset" variant="danger">Voltar</b-button>
+          </router-link>
       </div>
 
     </b-form>
@@ -41,8 +43,9 @@
 
 <script>
 // import { mapActions } from 'vuex'
-import store from "@/store";
+// import store from "@/store";
 import axios from "axios";
+import Swal from "sweetalert2";
 
   export default {
     
@@ -66,26 +69,24 @@ import axios from "axios";
             .post("http://127.0.0.1:8000/user/create", this.item,
             )
             .then(response => {
-              console.log(response.data);
-              alert("Conta criada, execute o login")
-              this.$router.push("login");
+              Swal.fire({
+                title: "Conta criada",
+                text: `Utilize username e senha para fazer login`,
+                confirmButtonText: "ENTENDI",
+              })
+              this.$router.push("/Login");
             })
             .catch(error => {
-              // Swal.fire({
-              //   type: "warning",
-              //   title: "Ocorreu um erro!",
-              //   text: "Por favor, tente novamente"
-              // });
-              alert("erro no create")
+              Swal.fire({
+                type: "warning",
+                title: "Ocorreu um erro!",
+                text: "Por favor, tente novamente"
+              });
             });
       },
     },
   }
 </script>
-
-
-
-
 
 <style>
     #body{
@@ -93,7 +94,10 @@ import axios from "axios";
         padding-bottom: 60px;
         background-color: whitesmoke;
     }
-
+    #title{
+        font-weight: 800;
+        font-size: 28px;
+    }
 
     #form {
         background-color: #8aabca;
@@ -155,21 +159,17 @@ import axios from "axios";
     }
 
 
-    .button-success {
-      border: hidden;
-      margin: 10px;
+    .button {
+      margin: 0px;
       margin-top: 20px;
-      color: white;
-      border-radius: 4px;
-      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-
-      background: rgb(28, 184, 65);
-
-      
       font-weight: 600;
       font-family: 'Nunito', sans-serif;
       font-size: 18px;
       color: oldlace;
+    }
+
+    #button{
+      margin-top: 10px;
     }
 
 

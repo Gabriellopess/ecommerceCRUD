@@ -1,5 +1,6 @@
 <template>
   <div id="body">  
+    <div id="title">LogIn</div>
     <b-form id="form">
 
       <div class="form-group">
@@ -13,7 +14,6 @@
 
       <div>
         <b-button variant="success" @click="login" id="button">Login</b-button>
-        <!-- <b-button variant="danger" type="submit" @click="logout" id="button">Logout</b-button> -->
       </div>
 
       <router-link to="Cadastro">
@@ -48,26 +48,9 @@ import axios from "axios";
           confirmButtonText: "Ok, entendi",
           buttonsStyling: false
         })
-        // alert("Erro ao sair")
         next(false)
       }
     },
-
-    //  if(store.getters.isAuthenticated){
-    //         next()
-    //       } else {
-    //         // Swal.fire({
-    //         //   title: "VOCÊ PRECISA FAZER LOGIN",
-    //         //   text: `Para sair desta página, faça o login.`,
-    //         //   type: "warning",
-    //         //   confirmButtonClass: "md-button md-danger btn-fill",
-    //         //   confirmButtonText: "Ok, entendi",
-    //         //   buttonsStyling: false
-    //         // })
-    //         alert("Erro ao sair")
-    //         next(false)
-    //       }
-
 
     data() {
       return {
@@ -90,16 +73,13 @@ import axios from "axios";
     methods: {
       ...mapActions('auth', ['AUTH_SUCCESS']),
       login(){
-        console.log(this.$store.getters.isAuthenticated)
         this.$http.post('api-token-auth/', this.user)
           .then(resp => {
             const token = resp.data
-            // console.log(resp)
             const data = { 
               username: this.user.username,
               password: this.user.password,
             }
-            // console.log("veio até aqui" + this.$store + this.user.id)
             this.$store.dispatch('AUTH_REQUEST', data).then(() => {
               this.$router.push('hub')  
             })
@@ -107,57 +87,21 @@ import axios from "axios";
             this.user.password = ''
           })
           .catch(err => {
-            console.log(err)
-            // Swal.fire({
-            //   title: "Usuário ou senha incorretos.",
-            //   text: `Por favor, tente dados válidos.`,
-            //   type: "warning",
-            //   confirmButtonClass: "md-button md-danger btn-fill",
-            //   confirmButtonText: "Ok, entendi",
-            //   buttonsStyling: false
-            // })
-            alert("Erro no login")
+            Swal.fire({
+              title: "Erro ao logar.",
+              text: `Por favor, tente novamente.`,
+              type: "warning",
+              confirmButtonClass: "md-button md-danger btn-fill",
+              confirmButtonText: "Ok, entendi",
+              buttonsStyling: false
+            })
             this.user.username = ''
             this.user.password = ''
-            });
-      },
-
-      logout(){
-        console.log(this.$store.getters.isAuthenticated)
-        this.$store.dispatch('AUTH_LOGOUT')
-          .then(() => {
-            console.log(this.$store.getters.isAuthenticated)
-        console.log("deslogando")
-        // this.$router.push('/login')
-          })
-      },
-
-
-      create: function() {
-        // this.authToken = localStorage.getItem("user-token")
-          axios
-            .post("http://127.0.0.1:8000/user/create", this.item, )
-            .then(response => {
-              console.log(response.data);
-              alert("Conta criada, execute o login")
-              // this.$router.push("Clientes");
-            })
-            .catch(error => {
-              // Swal.fire({
-              //   type: "warning",
-              //   title: "Ocorreu um erro!",
-              //   text: "Por favor, tente novamente"
-              // });
-              alert("erro no create")
             });
       },
     },
   }
 </script>
-
-
-
-
 
 <style>
     #body{
@@ -166,6 +110,10 @@ import axios from "axios";
         background-color: whitesmoke;
     }
 
+    #title{
+        font-weight: 800;
+        font-size: 28px;
+    }
 
     #form {
         background-color: #8aabca;

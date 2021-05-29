@@ -1,65 +1,3 @@
-<!--
-<template>
-  <div id="body">
-    <b-table striped hover :items="items">
-        <button>Teste</button>
-    </b-table>
-  </div>
-</template>
-
-<script>
-  export default {
-    data() {
-      return {
-        items: [
-          { age: 40, first_name: 'Dickerson', last_name: 'Macdonald' },
-          { age: 21, first_name: 'Larsen', last_name: 'Shaw' },
-          { age: 89, first_name: 'Geneva', last_name: 'Wilson' },
-          { age: 38, first_name: 'Jami', last_name: 'Carney' }
-        ]
-      }
-    }
-  }
-</script>
-
-<style scoped>
-    #body{
-        padding-top: 60px;
-        padding-bottom: 60px;
-        background-color: whitesmoke;
-    }
-</style> -->
-
-
-<!--
-<template>
-  <div class="md-layout">
-    <div class="md-layout-item md-size-100">
-      <md-card>
-        <md-card-header v-model="items" class="md-card-header-icon md-card-header-green">
-          <div class="card-icon">
-            <md-icon>assignment</md-icon>
-          </div>
-          <h4 class="title">LISTA DE MEDICAMENTOS: {{items.user.nome}}</h4>
-        </md-card-header>
-
-
-        <md-card-content>
-            <md-table v-model="items.medicamento_list"  table-header-color="green">
-              <md-table-row slot="md-table-row" slot-scope="{item}">
-                <md-table-cell md-label="#">{{ item.id }}</md-table-cell>
-                <md-table-cell md-label="NOME">{{ item.nome }}</md-table-cell>
-                <md-table-cell md-label="DOSAGEM">{{ item.dosagem }}</md-table-cell>
-              </md-table-row>
-            </md-table> 
-        </md-card-content>
-      </md-card>
-    </div>
-  </div>
-</template> -->
-
-
-
 <template>
   <div id="body">
     <md-table id="table" v-model="user.produto_list" md-card>
@@ -133,7 +71,6 @@ import Swal from "sweetalert2";
         })
         .then(response => {
           this.user = response.data;
-          console.log(response.data)
         });
     },
 
@@ -176,7 +113,6 @@ import Swal from "sweetalert2";
 
     handleEdit(item) {
       sessionStorage.setItem("produtoID", item.id);
-      console.log(item.id)
       Swal.fire({
         title: `Você deseja editar o produto: ${item.nome}`,
         buttonsStyling: true,
@@ -205,7 +141,6 @@ import Swal from "sweetalert2";
         display: flex;
         text-align-last: center;
         margin-bottom: 10px;
-        /* float: right; */
     }
 
     #button{

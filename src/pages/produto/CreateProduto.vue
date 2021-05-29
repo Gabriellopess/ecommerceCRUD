@@ -46,6 +46,7 @@
 
 <script>
 import axios from "axios";
+import Swal from "sweetalert2";
 
   export default {
     data() {
@@ -54,17 +55,15 @@ import axios from "axios";
           nome: '',
           descricao: '',
           preco: '',
-          user: {}, // []
+          user: {},
         },
       }
     },
 
     methods: {
       create: function () {
-          console.log(this.produto)
           this.authToken = localStorage.getItem("user-token")
           this.produto.user = localStorage.getItem("user-id")
-          console.log(this.produto)
           axios
             .post("http://127.0.0.1:8000/produto/list", this.produto, {
               headers: {
@@ -72,18 +71,19 @@ import axios from "axios";
               }
             })
             .then(response => {
-              console.log(response.data);
-              alert("Produto Criado")
-              this.$router.push("hub");
+              Swal.fire({
+                title: `Produto cadastrado!`,
+                buttonsStyling: false,
+                confirmButtonClass: "md-button md-info"
+              });
+              this.$router.push("/MeusProdutos");
             })
             .catch(error => {
-              console.log(error)
-            //   Swal.fire({
-            //     type: "warning",
-            //     title: "Ocorreu um erro!",
-            //     text: "Por favor, tente novamente"
-            //   });
-                alert("Erro no create")
+              Swal.fire({
+                type: "warning",
+                title: "Ocorreu um erro!",
+                text: "Por favor, tente novamente"
+              });
             });
       },
     }
@@ -118,13 +118,11 @@ import axios from "axios";
     }
 
     #input-group{
-        /* background-color: yellow; */
         margin-bottom: 10px;
         width: 70%;
     }
 
     #input{
-        /* background-color: violet; */
         margin-bottom: 5px;
         margin-left: 10px;
         width: 100%;
@@ -133,7 +131,6 @@ import axios from "axios";
     #button{
         float: left;
         margin: 8px;
-        /* width: 40% ; */
     }
     
 

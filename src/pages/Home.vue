@@ -6,7 +6,6 @@
       </md-table-toolbar>
 
       <md-table-row slot="md-table-row" slot-scope="{ item }">
-        <!-- <md-table-cell md-label="ID" md-sort-by="id" md-numeric>{{ item.nome }}</md-table-cell> -->
         <md-table-cell md-label="Nome" md-sort-by="name" md-numeric>{{ item.nome }}</md-table-cell>
         <md-table-cell md-label="Descrição" md-sort-by="email" md-numeric>{{ item.descricao }}</md-table-cell>
         <md-table-cell md-label="Preço" md-sort-by="gender" md-numeric>R${{ item.preco }}</md-table-cell>
@@ -19,7 +18,6 @@
 
 <script>
 import axios from "axios";
-// import Swal from "sweetalert2";
 
   export default {
      created(){

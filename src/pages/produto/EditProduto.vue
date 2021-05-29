@@ -57,7 +57,7 @@ import Swal from "sweetalert2";
           nome: '',
           descricao: '',
           preco: '',
-          user: {}, // []
+          user: {},
         },
       }
     },
@@ -75,7 +75,12 @@ import Swal from "sweetalert2";
                 }
                 })
                 .then(response => {
-                this.$router.push("meus produtos");
+                  Swal.fire({
+                    title: `Produto editado com sucesso.`,
+                    buttonsStyling: false,
+                    confirmButtonClass: "md-button md-info"
+                  });
+                  this.$router.push("/MeusProdutos");
                 })
                 .catch(error => {
                 Swal.fire({
@@ -134,13 +139,11 @@ import Swal from "sweetalert2";
     }
 
     #input-group{
-        /* background-color: yellow; */
         margin-bottom: 10px;
         width: 70%;
     }
 
     #input{
-        /* background-color: violet; */
         margin-bottom: 5px;
         margin-left: 10px;
         width: 100%;

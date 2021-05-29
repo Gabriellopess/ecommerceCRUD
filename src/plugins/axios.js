@@ -6,7 +6,7 @@ Vue.prototype.$http = axios.create({
     baseURL: 'http://localhost:8000/',
 
     headers: {
-      Authorization: "Token e31ca0037e6fcca0d9226f96f63bb5500c86b6e6"
+      Authorization: "Token bfd43854ce5f69c56702a274929d8a4547d9d147"
     }
 });
 

@@ -2,7 +2,6 @@ import Home from '@/pages/Home';
 import CreateProduto from '@/pages/produto/CreateProduto';
 import MeusProdutos from '@/pages/produto/MeusProdutos';
 import EditProduto from '@/pages/produto/EditProduto';
-// import Servicos from '@/pages/Servicos'
 
 import Login from '@/pages/Login';
 import Cadastro from '@/pages/Cadastro';
@@ -16,12 +15,42 @@ const routes = [
     {
         path: '/login',
         component: Login,
-        name: 'login'
+        name: 'login',
+        beforeEnter: (to, from, next) => {
+          if(store.getters.isAuthenticated){
+            next('/hub')
+            Swal.fire({
+              title: "Você já está logado",
+              text: `Para acessar a página de login, faça o logout.`,
+              type: "warning",
+              confirmButtonClass: "md-button md-danger btn-fill",
+              confirmButtonText: "Ok, entendi",
+              buttonsStyling: false
+            })
+          } else {
+            next()
+          }
+        },
     },
     {
         path: '/cadastro',
         component: Cadastro,
-        name: 'cadastro'
+        name: 'cadastro',
+        beforeEnter: (to, from, next) => {
+          if(store.getters.isAuthenticated){
+            next('/hub')
+            Swal.fire({
+              title: "Você já está logado",
+              text: `Para acessar a página de cadastro, faça o logout.`,
+              type: "warning",
+              confirmButtonClass: "md-button md-danger btn-fill",
+              confirmButtonText: "Ok, entendi",
+              buttonsStyling: false
+            })
+          } else {
+            next()
+          }
+        },
     },
     {
         path: '/hub',
@@ -47,16 +76,61 @@ const routes = [
         path: '/meusprodutos',
         component: MeusProdutos,
         name: 'meus produtos',
+        beforeEnter: (to, from, next) => {
+            if(store.getters.isAuthenticated){
+              next()
+            } else {
+              next('/login')
+              Swal.fire({
+                title: "VOCÊ PRECISA FAZER LOGIN",
+                text: `Para acessar a página, faça o login.`,
+                type: "warning",
+                confirmButtonClass: "md-button md-danger btn-fill",
+                confirmButtonText: "Ok, entendi",
+                buttonsStyling: false
+              })
+            }
+        },
     },
     {
         path: '/createproduto',
         component: CreateProduto,
         name: 'criar produto',
+        beforeEnter: (to, from, next) => {
+            if(store.getters.isAuthenticated){
+              next()
+            } else {
+              next('/login')
+              Swal.fire({
+                title: "VOCÊ PRECISA FAZER LOGIN",
+                text: `Para acessar a página, faça o login.`,
+                type: "warning",
+                confirmButtonClass: "md-button md-danger btn-fill",
+                confirmButtonText: "Ok, entendi",
+                buttonsStyling: false
+              })
+            }
+        },
     },
     {
         path: '/editproduto',
         component: EditProduto,
         name: 'editar produto',
+        beforeEnter: (to, from, next) => {
+            if(store.getters.isAuthenticated){
+              next()
+            } else {
+              next('/login')
+              Swal.fire({
+                title: "VOCÊ PRECISA FAZER LOGIN",
+                text: `Para acessar a página, faça o login.`,
+                type: "warning",
+                confirmButtonClass: "md-button md-danger btn-fill",
+                confirmButtonText: "Ok, entendi",
+                buttonsStyling: false
+              })
+            }
+        },
     },
 
     

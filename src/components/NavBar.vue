@@ -3,11 +3,7 @@
         <Burger id="burgerbtn"></Burger>
         <ul id="nbmenu">
             <li><a href="#/hub"><b>Hub</b></a></li>
-
-            <!-- Essa seção pode ficar dentro de um dropdown em um 'user' icon -->
-            <!-- <li><a href="#/meusprodutos"><b>Meus Produtos</b></a></li> -->
-            <!-- <li><a href="#"><b>Minhas informações</b></a></li> -->
-            <li v-if="isLogin"> <!-- v-if="$route.name != 'login'" -->
+            <li v-if="isLogin">
                 <md-menu md-direction="bottom-end" :mdCloseOnClick="closeOnClick" >
                     <md-button md-menu-trigger id="icon">
                         <b-avatar icon="people-fill"></b-avatar>
@@ -31,7 +27,6 @@
 <script>
 import Burger from './Menu/Burger.vue'
 import { mapActions } from 'vuex'
-// import store from "@/store";
 
 export default {
     data () {
@@ -55,13 +50,10 @@ export default {
     methods: {
         ...mapActions('auth', ['AUTH_SUCCESS']),
         logout(){
-        console.log(this.$store.getters.isAuthenticated)
         this.$store.dispatch('AUTH_LOGOUT')
-          .then(() => {
-            console.log(this.$store.getters.isAuthenticated)
-        console.log("deslogando")
-        this.$router.push('/login')
-          })
+        .then(() => {
+            this.$router.push('/login')
+        })
       },
     },
 }
