@@ -1,24 +1,23 @@
-# front
+# frontPrepiChallenge
 
-## Project setup
+# Project Setup step-by-step:
+## 1. It's recommended to setup the back-end project first.
+After copy the token integration, you can start setting up.
 ```
 npm install
 ```
-
-### Compiles and hot-reloads for development
+## 2. Open the code, and go to axios.js directory (src/plugins/axios.js)
+ - Get the copied token and paste that in 'headers' section:
+```
+headers: {
+      Authorization: "Token copiedToken"
+    }
+```
+## 3. Save it and compiles the code in terminal:
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 4. Remember:
+- The API super user is not part of the system for spreadsheet;
+- So, register an user and logIn with username and passwords.
