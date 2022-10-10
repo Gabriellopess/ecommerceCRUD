@@ -1,4 +1,4 @@
-# frontPrepiChallenge
+# Front CRUD
 
 # Project Setup step-by-step:
 ## 1. It's recommended to setup the back-end project first.
